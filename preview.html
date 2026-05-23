@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat 💬</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ece5dd;
+}
+
+.chat-container {
+  max-width: 400px;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #efeae2;
+}
+
+.header {
+  background: #c8eb07;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.bot {
+  background: white;
+  align-self: flex-start;
+}
+
+.user {
+  background: #dcf8c6;
+  align-self: flex-end;
+}
+
+.buttons {
+  padding: 10px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.yes {
+  background: #25d366;
+  color: white;
+}
+
+.no {
+  background: #ff4d4d;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+  <div class="header">Someone Special</div>
+
+  <div class="chat-box" id="chat"></div>
+
+  <div class="buttons" id="buttons" style="display:none;">
+    <button class="yes" onclick="yes()">YES 💖</button>
+    <button class="no" onclick="no()">NO 😒</button>
+  </div>
+
+</div>
+
+<script>
+
+const chat = document.getElementById("chat");
+const buttons = document.getElementById("buttons");
+
+let clickedNo = false; // Track NO click
+
+function addMessage(text, type="bot") {
+  const msg = document.createElement("div");
+  msg.className = "message " + type;
+  msg.innerText = text;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function delay(ms) {
+  return new Promise(res => setTimeout(res, ms));
+}
+
+// Conversation flow
+async function startChat() {
+  addMessage("Hey NIdha Hameed 👀");
+  await delay(1000);
+
+  addMessage("I wanted to ask you something...");
+  await delay(1500);
+
+  addMessage("I Hope every thing going well for you ...");
+  await delay(1500);
+
+  addMessage(" Ne No ye paryollu athenikke ariyaam still i need to ask u this 😅");
+  await delay(1500);
+
+  addMessage("Will you come to my engagement? 💍🥹");
+  await delay(1000);
+
+  addMessage("Madhi Okke indaavum ");
+  await delay(1000);
+
+  addMessage("And Offffff course i will arranege Sign laban too 😁");
+  await delay(1000);
+
+  buttons.style.display = "block";
+}
+
+// YES flow
+async function yes() {
+  addMessage("YES 💖", "user");
+
+  buttons.style.display = "none";
+  await delay(1000);
+
+  // Show extra message only if NO was clicked before
+  if (clickedNo) {
+    addMessage("Entinnanne veruthe No click pinne yes click? 😂");
+    await delay(1200);
+
+    addMessage("I know you dontt have intrest in comming");
+    await delay(1200);
+
+  }
+
+  addMessage("YAYYYYY 😍🎉");
+  await delay(1000);
+
+  addMessage("You just made my day 🥹💖");
+  await delay(1200);
+
+  addMessage("📍 Venue: Udyan hall chakkaraparambu, Kochi");
+  await delay(1000);
+
+  addMessage("📅 Date: June 28 😉");
+  await delay(1000);
+
+  addMessage("Don't be late... I'm watching you 👀😂");
+}
+
+// NO flow
+async function no() {
+  clickedNo = true; // Mark that NO was clicked
+
+  addMessage("NO 😒", "user");
+
+  buttons.style.display = "none";
+  await delay(1000);
+
+  addMessage("...");
+  await delay(1500);
+
+  addMessage("typing...");
+  await delay(2000);
+
+  addMessage("EXCUSE ME??? 😡");
+  await delay(1200);
+
+  addMessage("You think this is optional? 😂");
+  await delay(1200);
+
+  addMessage("And whatever it is oru paade vishamam unde ta dont know how to explain it to you 😅");
+  await delay(1500);
+
+
+  addMessage("Try again ...................😏");
+  await delay(1500);
+
+  buttons.style.display = "block";
+}
+
+// Start
+startChat();
+
+
+</script>
+
+</body>
+</html>
